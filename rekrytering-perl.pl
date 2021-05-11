@@ -11,11 +11,10 @@ print "---------------------------------------------\n";
 
 open(LIST, "ls -la projektkatalog |");
 while (my $line = <LIST>) {
-    my ($_, $_, $_, $_, $_, $time1, $time2, $time3, $dir) =
-	($line =~ /^(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)/);
+	my ($user, $dir) =
+		($line =~ /^\S+\s+\S+\s+(\S+)\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+(\S+)/);
 
-
-    if ($group =~ m/00$/) {
+    if ($dir =~ m/00$/) {
 	open(DU, "du -s projektkatalog/$dir |");
 	print <DU>;
 	close(DU);
